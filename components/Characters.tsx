@@ -40,6 +40,7 @@ export const Characters = ({people,loading}) => {
             ),
           },
     ]
+    
    const router = useRouter();
    const handleClick = (id) => {
      router.push(`/character/${id}`)

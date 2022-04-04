@@ -8,7 +8,7 @@ const customStyles = {
       left: '50%',
       right: 'auto',
       bottom: 'auto',
-      transform: 'translate(-50%, -50%)',
+      transform: 'translate(-50%, -20%)',
     },
   }; 
 
@@ -19,7 +19,7 @@ const customStyles = {
 
      useEffect(() => {
         router.prefetch('/')
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+       
       }, [])
     
   return (

@@ -1,9 +1,10 @@
 import { gql, useQuery } from '@apollo/client'
 import { Card, Tag } from 'antd'
 import React from 'react'
+import { FilmsTags } from './FilmsTags'
 
  type CharacterArgs = {
-    id: string | string[]
+    id: string | string[] | undefined
     }
  
 
@@ -33,6 +34,14 @@ import React from 'react'
           id
           title
           director
+          planetConnection {
+            edges {
+              node {
+                id
+                name
+              }
+            }
+          }
         }
       }
       
@@ -53,25 +62,7 @@ if(error) return <p>Error :(</p>;
         <p> Mass: <Tag color="blue">{data?.person.mass}. </Tag> </p>
         <p> Altura: <Tag color="blue"> {data?.person.height}. </Tag></p>
         <p> Especie:<Tag color="blue">{data?.person.species?.name}. </Tag>  </p>
-        <p>Peliculas:
-        {data?.person.filmConnection.edges?.map(edge => {
-          let color = edge.node?.title.length > 17 ? 'geekblue' : 'green';
-          if (edge.node?.title === 'The Empire Strikes Back') {
-            color = 'volcano';
-          }
-          //add planets
-          return (
-            <div key={edge.node?.id}>
-               <p> {edge.node?.title}: </p>
-              <Tag color={color} key={edge.node?.id}>
-              {edge.node?.title} - {edge.node?.director}
-            </Tag>
-            </div>
-           
-            
-          );
-        })}
-        </p>
+        <div>Peliculas: <FilmsTags edges={ data?.person.filmConnection.edges}/></div>
     </Card>
   )
 }
