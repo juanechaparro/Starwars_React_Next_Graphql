@@ -1,4 +1,6 @@
 import type { AppProps } from 'next/app'
+import 'antd/dist/antd.css';
+import '../styles/styles.css';
 import {ApolloClient, ApolloProvider, HttpLink, InMemoryCache} from '@apollo/client'
  const client = new ApolloClient({
    cache: new InMemoryCache(),
